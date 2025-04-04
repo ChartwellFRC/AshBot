@@ -149,7 +149,13 @@ public class RobotContainer {
     .andThen(m_coralSubSystem
     .runOnce(() -> {
       m_coralSubSystem.setIntakePower(0.5);
-    })));
+    })
+    .withTimeout(1)
+    .andThen(m_coralSubSystem
+    .runOnce(() -> {
+      m_coralSubSystem.setIntakePower(0);
+    })
+    )));
   }
 
   // public Command getAutonomousCommand(){
