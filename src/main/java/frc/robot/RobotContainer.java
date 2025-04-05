@@ -41,8 +41,7 @@ public class RobotContainer {
   private final AlgaeSubsystem m_algaeSubsystem = new AlgaeSubsystem();
 
   // The driver's controller
-  CommandXboxController m_driverController =
-      new CommandXboxController(OIConstants.kDriverControllerPort);
+  CommandXboxController m_driverController = new CommandXboxController(OIConstants.kDriverControllerPort);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -56,14 +55,11 @@ public class RobotContainer {
         new RunCommand(
             () ->
                 m_robotDrive.drive(
-                    -MathUtil.applyDeadband(
-                        m_driverController.getLeftY(), OIConstants.kDriveDeadband),
-                    -MathUtil.applyDeadband(
-                        m_driverController.getLeftX(), OIConstants.kDriveDeadband),
-                    -MathUtil.applyDeadband(
-                        m_driverController.getRightX(), OIConstants.kDriveDeadband),
-                    true),
-            m_robotDrive));
+                    -MathUtil.applyDeadband(m_driverController.getLeftY(), OIConstants.kDriveDeadband),
+                    -MathUtil.applyDeadband(m_driverController.getLeftX(), OIConstants.kDriveDeadband),
+                    -MathUtil.applyDeadband(m_driverController.getRightX(), OIConstants.kDriveDeadband),
+                    false),
+                    m_robotDrive));
 
     // Set the ball intake to in/out when not running based on internal state
     m_algaeSubsystem.setDefaultCommand(m_algaeSubsystem.idleCommand());
@@ -85,15 +81,9 @@ public class RobotContainer {
     // Right Bumper -> Run tube intake in reverse
     m_driverController.rightBumper().whileTrue(m_coralSubSystem.reverseIntakeCommand());
 
-    // B Button -> Elevator/Arm to human player position, set ball intake to stow
-    // when idle
-    m_driverController
-        .b()
-        .onTrue(
-            m_coralSubSystem
-                .setSetpointCommand(Setpoint.kFeederStation)
-                .alongWith(m_algaeSubsystem.stowCommand()));
-
+    // B Button -> Elevator/Arm to human player position, set ball intake to stow when idle
+    m_driverController.b().onTrue(m_coralSubSystem.setSetpointCommand(Setpoint.kFeederStation).alongWith(m_algaeSubsystem.stowCommand()));
+ 
     // A Button -> Elevator/Arm to level 2 position
     m_driverController.a().onTrue(m_coralSubSystem.setSetpointCommand(Setpoint.kLevel2));
 
@@ -104,14 +94,10 @@ public class RobotContainer {
     // m_driverController.y().onTrue(m_coralSubSystem.setSetpointCommand(Setpoint.kLevel4));
 
     // Right Trigger -> Run ball intake, set to leave out when idle
-    m_driverController
-        .rightTrigger(OIConstants.kTriggerButtonThreshold)
-        .whileTrue(m_algaeSubsystem.runIntakeCommand());
+    m_driverController.rightTrigger(OIConstants.kTriggerButtonThreshold).whileTrue(m_algaeSubsystem.runIntakeCommand());
 
     // Left Trigger -> Run ball intake in reverse, set to stow when idle
-    m_driverController
-        .leftTrigger(OIConstants.kTriggerButtonThreshold)
-        .whileTrue(m_algaeSubsystem.reverseIntakeCommand());
+    m_driverController.leftTrigger(OIConstants.kTriggerButtonThreshold).whileTrue(m_algaeSubsystem.reverseIntakeCommand());
 
     // Start Button -> Zero swerve heading
     m_driverController.start().onTrue(m_robotDrive.zeroHeadingCommand());
@@ -158,24 +144,24 @@ public class RobotContainer {
     )));
   }
 
-  // public Command getAutonomousCommand(){
-  //   return m_robotDrive.run(() -> {
-  //     m_robotDrive.drive(
-  //       0.3,
-  //       0,
-  //       0, 
-  //       false);
-  //   })
-  //   .withTimeout(1)
-  //   .andThen(m_robotDrive
-  //   .runOnce(() -> {
-  //     m_robotDrive.drive(
-  //       0, 
-  //       0, 
-  //       0, 
-  //       false);
-  //   }));
-  // }
+  public Command getSimpleAutonomousCommand(){
+    return m_robotDrive.run(() -> {
+      m_robotDrive.drive(
+        0.3,
+        0,
+        0, 
+        false);
+    })
+    .withTimeout(1)
+    .andThen(m_robotDrive
+    .runOnce(() -> {
+      m_robotDrive.drive(
+        0, 
+        0, 
+        0, 
+        false);
+    }));
+  }
 
   public Command getSPatternAutonomousCommand() {
     // Create config for trajectory
