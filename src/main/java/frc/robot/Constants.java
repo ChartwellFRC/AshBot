@@ -33,7 +33,7 @@ public final class Constants {
     }
 
     public static final class ArmSetpoints {
-      public static final double kFeederStation = 36;
+      public static final double kFeederStation = 32.25;
       public static final double kLevel1 = 0;
       public static final double kLevel2 = 2;
       public static final double kLevel3 = 2;
@@ -47,8 +47,8 @@ public final class Constants {
   }
 
   public static final class AlgaeSubsystemConstants {
-    public static final int kIntakeMotorCanId = 10;
-    public static final int kPivotMotorCanId = 11;
+    //public static final int kIntakeMotorCanId = 10;
+    //public static final int kPivotMotorCanId = 11;
 
     public static final class ArmSetpoints {
       public static final double kStow = 18.5;
