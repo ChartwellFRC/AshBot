@@ -94,10 +94,10 @@ public class RobotContainer {
     // m_driverController.y().onTrue(m_coralSubSystem.setSetpointCommand(Setpoint.kLevel4));
 
     // Right Trigger -> Run ball intake, set to leave out when idle
-    m_driverController.rightTrigger(OIConstants.kTriggerButtonThreshold).whileTrue(m_algaeSubsystem.runIntakeCommand());
+    // m_driverController.rightTrigger(OIConstants.kTriggerButtonThreshold).whileTrue(m_algaeSubsystem.runIntakeCommand());
 
     // Left Trigger -> Run ball intake in reverse, set to stow when idle
-    m_driverController.leftTrigger(OIConstants.kTriggerButtonThreshold).whileTrue(m_algaeSubsystem.reverseIntakeCommand());
+    // m_driverController.leftTrigger(OIConstants.kTriggerButtonThreshold).whileTrue(m_algaeSubsystem.reverseIntakeCommand());
 
     // Start Button -> Zero swerve heading
     m_driverController.start().onTrue(m_robotDrive.zeroHeadingCommand());

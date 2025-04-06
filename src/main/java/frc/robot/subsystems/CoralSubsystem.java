@@ -127,9 +127,10 @@ public class CoralSubsystem extends SubsystemBase {
         ResetMode.kResetSafeParameters,
         PersistMode.kPersistParameters);
     elevatorMotor.configure(
-        Configs.CoralSubsystem.elevatorConfig,
+        Configs.CoralSubsystem.elevatorConfig.inverted(true),
         ResetMode.kResetSafeParameters,
         PersistMode.kPersistParameters);
+       
     intakeMotor.configure(
         Configs.CoralSubsystem.intakeConfig,
         ResetMode.kResetSafeParameters,

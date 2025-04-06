@@ -20,9 +20,9 @@ import edu.wpi.first.math.util.Units;
 public final class Constants {
 
   public static final class CoralSubsystemConstants {
-    public static final int kElevatorMotorCanId = 12;
-    public static final int kArmMotorCanId = 13;
-    public static final int kIntakeMotorCanId = 14;
+    public static final int kElevatorMotorCanId = 14;
+    public static final int kArmMotorCanId = 12 ;
+    public static final int kIntakeMotorCanId = 13;
 
     public static final class ElevatorSetpoints {
       public static final int kFeederStation = 0;
@@ -33,7 +33,7 @@ public final class Constants {
     }
 
     public static final class ArmSetpoints {
-      public static final double kFeederStation = 33;
+      public static final double kFeederStation = 36;
       public static final double kLevel1 = 0;
       public static final double kLevel2 = 2;
       public static final double kLevel3 = 2;
@@ -42,7 +42,7 @@ public final class Constants {
 
     public static final class IntakeSetpoints {
       public static final double kForward = 0.5;
-      public static final double kReverse = -0.5;
+      public static final double kReverse = -0.75;
     }
   }
 
