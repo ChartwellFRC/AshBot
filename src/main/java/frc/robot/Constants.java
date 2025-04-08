@@ -33,16 +33,17 @@ public final class Constants {
     }
 
     public static final class ArmSetpoints {
-      public static final double kFeederStation = 32.25;
+      public static final double kFeederStation = 34.75;
       public static final double kLevel1 = 0;
       public static final double kLevel2 = 2;
-      public static final double kLevel3 = 2;
+      public static final double 
+      kLevel3 = 2;
       public static final double kLevel4 = 19;
     }
 
     public static final class IntakeSetpoints {
-      public static final double kForward = 0.5;
-      public static final double kReverse = -0.75;
+      public static final double kForward = 1;
+      public static final double kReverse = -1;
     }
   }
 
