@@ -23,8 +23,8 @@ import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
 // import frc.robot.subsystems.AlgaeSubsystem;
-import frc.robot.subsystems.CoralSubsystem;
-import frc.robot.subsystems.CoralSubsystem.Setpoint;
+// import frc.robot.subsystems.CoralSubsystem;
+// import frc.robot.subsystems.CoralSubsystem.Setpoint;
 import frc.robot.subsystems.DriveSubsystem;
 import java.util.List;
 
@@ -37,7 +37,7 @@ import java.util.List;
 public class RobotContainer {
   // The robot's subsystems
   private final DriveSubsystem m_robotDrive = new DriveSubsystem();
-  private final CoralSubsystem m_coralSubSystem = new CoralSubsystem();
+  //private final CoralSubsystem m_coralSubSystem = new CoralSubsystem();
   // private final AlgaeSubsystem m_algaeSubsystem = new AlgaeSubsystem();
 
   // The driver's controller
@@ -76,19 +76,19 @@ public class RobotContainer {
     m_driverController.leftStick().whileTrue(m_robotDrive.setXCommand());
 
     // Left Bumper -> Run tube intake
-    m_driverController.leftBumper().whileTrue(m_coralSubSystem.runIntakeCommand());
+    //m_driverController.leftBumper().whileTrue(m_coralSubSystem.runIntakeCommand());
 
     // Right Bumper -> Run tube intake in reverse
-    m_driverController.rightBumper().whileTrue(m_coralSubSystem.reverseIntakeCommand());
+    //m_driverController.rightBumper().whileTrue(m_coralSubSystem.reverseIntakeCommand());
 
     // B Button -> Elevator/Arm to human player position, set ball intake to stow when idle
-    m_driverController.b().onTrue(m_coralSubSystem.setSetpointCommand(Setpoint.kFeederStation));//.alongWith(m_algaeSubsystem.stowCommand()));
+    //m_driverController.b().onTrue(m_coralSubSystem.setSetpointCommand(Setpoint.kFeederStation));//.alongWith(m_algaeSubsystem.stowCommand()));
  
     // A Button -> Elevator/Arm to level 2 position
-    m_driverController.a().onTrue(m_coralSubSystem.setSetpointCommand(Setpoint.kLevel2));
+    //m_driverController.a().onTrue(m_coralSubSystem.setSetpointCommand(Setpoint.kLevel2));
 
     // X Button -> Elevator/Arm to level 3 position
-    m_driverController.x().onTrue(m_coralSubSystem.setSetpointCommand(Setpoint.kLevel3));
+    //m_driverController.x().onTrue(m_coralSubSystem.setSetpointCommand(Setpoint.kLevel3));
 
     // Y Button -> Elevator/Arm to level 4 position
     // m_driverController.y().onTrue(m_coralSubSystem.setSetpointCommand(Setpoint.kLevel4));
@@ -103,46 +103,46 @@ public class RobotContainer {
     m_driverController.start().onTrue(m_robotDrive.zeroHeadingCommand());
   }
 
-  public double getSimulationTotalCurrentDraw() {
-    // for each subsystem with simulation
-    return m_coralSubSystem.getSimulationCurrentDraw();
-        // + m_algaeSubsystem.getSimulationCurrentDraw();
-  }
+  // public double getSimulationTotalCurrentDraw() {
+  //   // for each subsystem with simulation
+  //   return m_coralSubSystem.getSimulationCurrentDraw();
+  //       // + m_algaeSubsystem.getSimulationCurrentDraw();
+  // }
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
    *
    * @return the command to run in autonomous
    */
-  public Command getAutonomousCommand(){
-    return m_robotDrive.run(() -> {
-      m_robotDrive.drive(
-        0.3,
-        0,
-        0, 
-        false);
-    })
-    .withTimeout(1)
-    .andThen(m_robotDrive
-    .runOnce(() -> {
-      m_robotDrive.drive(
-        0, 
-        0, 
-        0, 
-        false);
-    })
-    .withTimeout(1)
-    .andThen(m_coralSubSystem
-    .runOnce(() -> {
-      m_coralSubSystem.setIntakePower(0.5);
-    })
-    .withTimeout(1)
-    .andThen(m_coralSubSystem
-    .runOnce(() -> {
-      m_coralSubSystem.setIntakePower(0);
-    })
-    )));
-  }
+  // public Command getAutonomousCommand(){
+  //   return m_robotDrive.run(() -> {
+  //     m_robotDrive.drive(
+  //       0.3,
+  //       0,
+  //       0, 
+  //       false);
+  //   })
+  //   .withTimeout(1)
+  //   .andThen(m_robotDrive
+  //   .runOnce(() -> {
+  //     m_robotDrive.drive(
+  //       0, 
+  //       0, 
+  //       0, 
+  //       false);
+  //   })
+  //   .withTimeout(1)
+  //   .andThen(m_coralSubSystem
+  //   .runOnce(() -> {
+  //     m_coralSubSystem.setIntakePower(0.5);
+  //   })
+  //   .withTimeout(1)
+  //   .andThen(m_coralSubSystem
+  //   .runOnce(() -> {
+  //     m_coralSubSystem.setIntakePower(0);
+  //   })
+  //   )));
+  // }
 
   public Command getSimpleAutonomousCommand(){
     return m_robotDrive.run(() -> {
